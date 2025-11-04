@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "sindhu/MedicalStore"
+        IMAGE_NAME = "sindhu/medicalstore"
         ECR_REPO   = "944731154859.dkr.ecr.us-east-1.amazonaws.com/ecr-repo"
         REGION     = "us-east-1"
         AWS_CLI    = "C:\\Program Files\\Amazon\\AWSCLIV2\\aws.exe"
