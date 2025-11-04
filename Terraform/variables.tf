@@ -10,7 +10,7 @@ variable "instance_type" {
 
 variable "key_name" {
   description = "Existing EC2 key pair name"
-  default     = "My_Key_Pair"
+  default     = "Key-Pair"
 }
 
 variable "ecr_repo_url" {
