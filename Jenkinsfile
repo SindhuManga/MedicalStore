@@ -13,7 +13,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 echo '📦 Cloning repository...'
-                git branch: 'main', url: 'https://github.com/SindhuManga/medical-store.git'
+                git branch: 'main', url: 'https://github.com/SindhuManga/MedicalStore.git'
             }
         }
 
