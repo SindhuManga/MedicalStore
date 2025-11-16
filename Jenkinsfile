@@ -21,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo '🐳 Building Docker image...'
-                bat 'docker build -t %IMAGE_NAME%:latest .'
+                sh 'docker build -t %IMAGE_NAME%:latest .'
             }
         }
 
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 echo '🚀 Pushing image to AWS ECR...'
                 withCredentials([usernamePassword(credentialsId: 'aws-creds', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    bat """
+                    sh """
                     set AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%
                     set AWS_SECRET_ACCESS_KEY=%AWS_SECRET_ACCESS_KEY%
                     "%AWS_CLI%" ecr get-login-password --region %REGION% | docker login --username AWS --password-stdin %ECR_REPO%
@@ -45,7 +45,7 @@ pipeline {
                 echo '🏗️ Deploying EC2 instance and running Docker container...'
                 withCredentials([usernamePassword(credentialsId: 'aws-creds', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     dir('terraform') {
-                        bat """
+                        sh """
                         set AWS_ACCESS_KEY_ID=%AWS_ACCESS_KEY_ID%
                         set AWS_SECRET_ACCESS_KEY=%AWS_SECRET_ACCESS_KEY%
                         "%TERRAFORM%" init
