@@ -3,11 +3,19 @@ provider "aws" {
   region = var.region
 }
 
+terraform {
+  backend "s3" {
+    bucket = "sindhu-bucket-23"
+    key    = "root/state"
+    region = "us-east-1"
+  }
+}
+
 # ------------------------------
 # IAM Role for EC2 to Access ECR
 # ------------------------------
 resource "aws_iam_role" "ec2_role" {
-  name = "ec2-ecr-role"
+  name = "ec2-assume-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

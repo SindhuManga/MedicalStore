@@ -20,5 +20,5 @@ variable "ecr_repo_url" {
 
 variable "security_group_name" {
   description = "Security group name for EC2 instance"
-  default     = "jenkins-ec2-sg"
+  default     = "web-sg"
 }
