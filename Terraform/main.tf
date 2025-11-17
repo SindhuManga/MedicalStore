@@ -7,7 +7,7 @@ provider "aws" {
 # IAM Role for EC2 to Access ECR
 # ------------------------------
 resource "aws_iam_role" "ec2_role" {
-  name = "ec2-ecr-access-role"
+  name = "ec2-ecr-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
